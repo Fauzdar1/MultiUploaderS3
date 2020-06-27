@@ -16,6 +16,18 @@ import android.content.Context
              )
          }
      }
+  
+     private fun s3ClientInitialization(context: Context): AmazonS3 {
+        val cognitoCachingCredentialsProvider = CognitoCachingCredentialsProvider(
+            context,
+            your key,
+            region
+        )
+        return AmazonS3Client(
+            cognitoCachingCredentialsProvider,
+            Region.getRegion(Regions.YOUR_REGION)
+        )
+     }
 
      fun uploadMultiple(fileToKeyUploads: Map<File, String>, context: Context): Completable? {
          return transferUtility(context)!!
